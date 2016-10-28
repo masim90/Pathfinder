@@ -15,8 +15,9 @@
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/personName_editName"
-        android:layout_above="@+id/password_editPW"
-        android:layout_alignStart="@+id/button_Login" />
+        android:layout_above="@+id/mediumText_PW"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/button_close" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -25,15 +26,17 @@
         android:ems="10"
         android:id="@+id/password_editPW"
         android:layout_above="@+id/button_Login"
-        android:layout_alignStart="@+id/personName_editName"
-        android:layout_marginBottom="23dp" />
+        android:layout_alignStart="@+id/mediumText_PW"
+        android:layout_marginBottom="43dp"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_Login"
         android:id="@+id/button_Login"
-        android:layout_centerVertical="true"
+        android:layout_marginBottom="105dp"
+        android:layout_above="@+id/button_Register"
         android:layout_centerHorizontal="true" />
 
     <TextView
@@ -42,8 +45,8 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/mediumText_Name"
         android:id="@+id/mediumText_Name"
-        android:layout_alignParentStart="true"
-        android:layout_alignBaseline="@+id/personName_editName" />
+        android:layout_above="@+id/personName_editName"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -51,9 +54,8 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/mediumText_PW"
         android:id="@+id/mediumText_PW"
-        android:layout_alignTop="@+id/password_editPW"
-        android:layout_alignParentStart="true"
-        android:layout_alignBaseline="@+id/password_editPW" />
+        android:layout_above="@+id/password_editPW"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -61,7 +63,7 @@
         android:text="@string/button_close"
         android:id="@+id/button_close"
         android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/password_editPW" />
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"

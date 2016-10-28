@@ -20,6 +20,7 @@ public class Pathfinder extends Activity implements View.OnClickListener, View.O
     EditText loginName;
     EditText loginPw;
     Button back;
+    Button level1;
 
     String loginname = "s";
     String passwort = "m";
@@ -46,6 +47,9 @@ public class Pathfinder extends Activity implements View.OnClickListener, View.O
                     Toast.makeText(this, "Falsche Benutzerdaten", Toast.LENGTH_SHORT).show();
                 }
                 break;
+            case R.id.button_Level1:
+                viewLevel1();
+                break;
             case R.id.button_Back:
                 viewLogin();
                 break;
@@ -60,9 +64,11 @@ public class Pathfinder extends Activity implements View.OnClickListener, View.O
     }
 
     public void viewChooseLevel(){
-        setContentView(R.layout.login_landing);
+        setContentView(R.layout.level_landing);
         back = (Button) findViewById(R.id.button_Back);
         back.setOnClickListener(this);
+        level1 = (Button) findViewById(R.id.button_Level1);
+        level1.setOnClickListener(this);
     }
 
     public void viewLogin(){
@@ -80,5 +86,11 @@ public class Pathfinder extends Activity implements View.OnClickListener, View.O
 
     public void viewRegister(){
         setContentView(R.layout.register_landing);
+        back = (Button) findViewById(R.id.button_Back);
+        back.setOnClickListener(this);
+    }
+
+    public void viewLevel1(){
+        setContentView(R.layout.level1_landing);
     }
 }
