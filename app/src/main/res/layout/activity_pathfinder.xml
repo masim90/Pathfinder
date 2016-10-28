@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.pathfinder.sm.pathfinder.Pathfinder">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/personName_editName"
+        android:layout_above="@+id/password_editPW"
+        android:layout_alignStart="@+id/button_Login" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/password_editPW"
+        android:layout_above="@+id/button_Login"
+        android:layout_alignStart="@+id/personName_editName"
+        android:layout_marginBottom="23dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_Login"
+        android:id="@+id/button_Login"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/mediumText_Name"
+        android:id="@+id/mediumText_Name"
+        android:layout_alignParentStart="true"
+        android:layout_alignBaseline="@+id/personName_editName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/mediumText_PW"
+        android:id="@+id/mediumText_PW"
+        android:layout_alignTop="@+id/password_editPW"
+        android:layout_alignParentStart="true"
+        android:layout_alignBaseline="@+id/password_editPW" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_close"
+        android:id="@+id/button_close"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/password_editPW" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/largeText_LoginTitle"
+        android:id="@+id/largeText_LoginTitle"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_Register"
+        android:id="@+id/button_Register"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+
+</RelativeLayout>

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Pathfinder</string>
+    <string name="button_close">Ende</string>
+    <string name="mediumText_Name">Name:</string>
+    <string name="mediumText_PW">Passwort:</string>
+    <string name="button_Login">Login</string>
+    <string name="largeText_LoginTitle">Login</string>
+    <string name="largeText_LevelTitle">Levelauswahl</string>
+    <string name="button_Back">Zurück</string>
+    <string name="button_Register">Registrieren</string>
+    <string name="mediumText_Email">Email:</string>
+    <string name="mediumText_RepeatPW">Passwort wiederholen:</string>
+</resources>
