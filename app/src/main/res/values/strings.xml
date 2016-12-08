@@ -12,4 +12,19 @@
     <string name="mediumText_RepeatPW">Passwort wiederholen:</string>
     <string name="button_Level1">1</string>
     <string name="button_Level4">4</string>
+    <string name="button_Level7">7</string>
+    <string name="button_Level2">2</string>
+    <string name="button_Level6">6</string>
+    <string name="button_Level5">5</string>
+    <string name="button_Level3">3</string>
+    <string name="button_Level8">8</string>
+    <string name="button_Level9">9</string>
+    <string name="button_Level10">10</string>
+    <string name="button_Level11">11</string>
+    <string name="button_Level12">12</string>
+    <string name="button_Level13">13</string>
+    <string name="button_Level14">14</string>
+    <string name="largeText_Level1Title">Level 1</string>
+    <string name="button_Start">Start</string>
+    <string name="button_Level1Path" />
 </resources>

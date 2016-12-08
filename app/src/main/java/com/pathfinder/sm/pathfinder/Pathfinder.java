@@ -2,29 +2,75 @@ package com.pathfinder.sm.pathfinder;
 
 import android.app.Activity;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Pathfinder extends Activity implements View.OnClickListener, View.OnHoverListener{
 
     Button register;
     Button login;
+    Button start;
     Button close;
     TextView title;
     EditText loginName;
     EditText loginPw;
     Button back;
     Button level1;
+    Button b0_0;
+    Button b0_1;
+    Button b0_2;
+    Button b0_3;
+    Button b0_4;
+    Button b0_5;
+    Button b1_0;
+    Button b1_1;
+    Button b1_2;
+    Button b1_3;
+    Button b1_4;
+    Button b1_5;
+    Button b2_0;
+    Button b2_1;
+    Button b2_2;
+    Button b2_3;
+    Button b2_4;
+    Button b2_5;
+    Button b2_6;
+    Button b3_0;
+    Button b3_1;
+    Button b3_2;
+    Button b3_3;
+    Button b3_4;
+    Button b3_5;
+    Button b4_0;
+    Button b4_1;
+    Button b4_2;
+    Button b4_3;
+    Button b4_4;
+    Button b4_5;
+    Button b5_0;
+    Button b5_1;
+    Button b5_2;
+    Button b5_3;
+    Button b5_4;
+    Button b5_5;
+
+    Button[][] buttonArray = new Button[6][6];
+
+
+
 
     String loginname = "s";
     String passwort = "m";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +96,11 @@ public class Pathfinder extends Activity implements View.OnClickListener, View.O
             case R.id.button_Level1:
                 viewLevel1();
                 break;
+            case R.id.button_Start:
+                addButtons();
+                break;
             case R.id.button_Back:
-                viewLogin();
+                viewChooseLevel();
                 break;
             case R.id.button_close:
                 finish();
@@ -92,5 +141,35 @@ public class Pathfinder extends Activity implements View.OnClickListener, View.O
 
     public void viewLevel1(){
         setContentView(R.layout.level1_landing);
+        start = (Button) findViewById(R.id.button_Start);
+        start.setOnClickListener(this);
+
+        back = (Button) findViewById(R.id.button_Back);
+        back.setOnClickListener(this);
+
+
     }
+
+    public void addButtons(){
+        setContentView(R.layout.level1_landing);
+        RelativeLayout rl = (RelativeLayout)findViewById(R.id.level1_landing);
+        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        for(int i=0;i<6;i++){
+            for(int j=0;j<6;j++){
+                buttonArray[i][j] = new Button(this);
+                buttonArray[i][j].setId(i + j);
+                buttonArray[i][j].setBackgroundColor(Color.BLUE);
+                rl.addView(buttonArray[i][j], lp);
+                System.out.println(buttonArray[i][j].getId());
+                //buttonArray[i][j].setOnClickListener(this);
+
+            }
+        }
+        
+
+        back = (Button) findViewById(R.id.button_Back);
+        back.setOnClickListener(this);
+    }
+
+
 }

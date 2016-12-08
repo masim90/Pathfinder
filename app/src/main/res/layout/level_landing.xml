@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/level_landing"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -31,17 +32,7 @@
         android:text="@string/button_Level1"
         android:id="@+id/button_Level1"
         android:layout_marginTop="44dp"
-        android:width="5px"
         android:layout_below="@+id/largeText_LevelTitle"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_Level4"
-        android:id="@+id/button_Level4"
-        android:layout_below="@+id/button_Level1"
         android:layout_alignParentStart="true" />
 
 </RelativeLayout>
