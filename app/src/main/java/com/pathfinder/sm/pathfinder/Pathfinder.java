@@ -102,6 +102,9 @@ public class Pathfinder extends Activity implements View.OnClickListener, View.O
             case R.id.button_Back:
                 viewChooseLevel();
                 break;
+            case 55:
+                viewLogin();
+                break;
             case R.id.button_close:
                 finish();
         }
@@ -151,21 +154,30 @@ public class Pathfinder extends Activity implements View.OnClickListener, View.O
     }
 
     public void addButtons(){
-        setContentView(R.layout.level1_landing);
+
         RelativeLayout rl = (RelativeLayout)findViewById(R.id.level1_landing);
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        String buttonId = "";
+        int bId;
+        int margin = 0;
         for(int i=0;i<6;i++){
             for(int j=0;j<6;j++){
                 buttonArray[i][j] = new Button(this);
-                buttonArray[i][j].setId(i + j);
+                buttonId = i + "" + j;
+                bId = Integer.parseInt(buttonId);
+                buttonArray[i][j].setId(bId);
                 buttonArray[i][j].setBackgroundColor(Color.BLUE);
+                buttonArray[i][j].setLayoutParams(lp);
+                buttonArray[i][j].setY(30 - margin);
+                buttonArray[i][j].setX(10 + margin);
                 rl.addView(buttonArray[i][j], lp);
+                margin = margin + 3;
                 System.out.println(buttonArray[i][j].getId());
-                //buttonArray[i][j].setOnClickListener(this);
+                buttonArray[i][j].setOnClickListener(this);
 
             }
         }
-        
+
 
         back = (Button) findViewById(R.id.button_Back);
         back.setOnClickListener(this);
