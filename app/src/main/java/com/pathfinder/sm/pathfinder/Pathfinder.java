@@ -80,6 +80,9 @@ public class Pathfinder extends Activity implements View.OnClickListener, View.O
 
     @Override
     public void onClick(View view) {
+        if(view.getId() < 100){
+            highlightButton();
+        }
         switch(view.getId()) {
             case R.id.button_Register:
                 viewRegister();
@@ -97,13 +100,10 @@ public class Pathfinder extends Activity implements View.OnClickListener, View.O
                 viewLevel1();
                 break;
             case R.id.button_Start:
-                addButtons();
+                viewLevel1Path();
                 break;
             case R.id.button_Back:
                 viewChooseLevel();
-                break;
-            case 55:
-                viewLogin();
                 break;
             case R.id.button_close:
                 finish();
@@ -143,7 +143,7 @@ public class Pathfinder extends Activity implements View.OnClickListener, View.O
     }
 
     public void viewLevel1(){
-        setContentView(R.layout.level1_landing);
+        setContentView(R.layout.level1_start);
         start = (Button) findViewById(R.id.button_Start);
         start.setOnClickListener(this);
 
@@ -157,21 +157,24 @@ public class Pathfinder extends Activity implements View.OnClickListener, View.O
 
         RelativeLayout rl = (RelativeLayout)findViewById(R.id.level1_landing);
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        String buttonId = "";
+        lp.leftMargin = 20;
+        lp.topMargin = 20;
+        lp.width = 80;
+        lp.height = 80;
+
+        String buttonId;
         int bId;
         int margin = 0;
-        for(int i=0;i<6;i++){
-            for(int j=0;j<6;j++){
+        for(int i=0;i<1;i++){
+            for(int j=0;j<2;j++){
                 buttonArray[i][j] = new Button(this);
                 buttonId = i + "" + j;
                 bId = Integer.parseInt(buttonId);
                 buttonArray[i][j].setId(bId);
                 buttonArray[i][j].setBackgroundColor(Color.BLUE);
                 buttonArray[i][j].setLayoutParams(lp);
-                buttonArray[i][j].setY(30 - margin);
-                buttonArray[i][j].setX(10 + margin);
+                
                 rl.addView(buttonArray[i][j], lp);
-                margin = margin + 3;
                 System.out.println(buttonArray[i][j].getId());
                 buttonArray[i][j].setOnClickListener(this);
 
@@ -181,6 +184,19 @@ public class Pathfinder extends Activity implements View.OnClickListener, View.O
 
         back = (Button) findViewById(R.id.button_Back);
         back.setOnClickListener(this);
+    }
+
+    public void viewLevel1Path(){
+        setContentView(R.layout.level1_landing);
+
+        back = (Button) findViewById(R.id.button_Back);
+        back.setOnClickListener(this);
+
+        addButtons();
+    }
+
+    public void highlightButton(){
+
     }
 
 
