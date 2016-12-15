@@ -7,7 +7,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -64,7 +67,7 @@ public class Pathfinder extends Activity implements View.OnClickListener, View.O
     Button b5_4;
     Button b5_5;
 
-    Button[][] buttonArray = new Button[6][6];
+    Button[][] buttonArray = new Button[8][8];
 
 
 
@@ -155,31 +158,54 @@ public class Pathfinder extends Activity implements View.OnClickListener, View.O
 
     public void addButtons(){
 
-        RelativeLayout rl = (RelativeLayout)findViewById(R.id.level1_landing);
-        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        lp.leftMargin = 20;
-        lp.topMargin = 20;
-        lp.width = 80;
-        lp.height = 80;
+        LinearLayout ll = (LinearLayout)findViewById(R.id.level1_landing);
+        TableLayout tl = new TableLayout(this);
 
         String buttonId;
         int bId;
-        int margin = 0;
-        for(int i=0;i<1;i++){
-            for(int j=0;j<2;j++){
+
+        for(int row=0;row<8;row++){
+            TableRow currentRow = new TableRow(this);
+            for(int column=0;column<8;column++){
+                buttonArray[row][column] = new Button(this);
+                buttonId = row + "" + column;
+                bId = Integer.parseInt(buttonId);
+                buttonArray[row][column].setId(bId);
+                buttonArray[row][column].setBackgroundColor(Color.BLUE);
+                currentRow.addView(buttonArray[row][column]);
+            }
+            tl.addView(currentRow);
+        }
+        ll.addView(tl);
+
+        /*for(int i=0;i<8;i++){
+            for(int j=0;j<8;j++){
                 buttonArray[i][j] = new Button(this);
                 buttonId = i + "" + j;
                 bId = Integer.parseInt(buttonId);
                 buttonArray[i][j].setId(bId);
                 buttonArray[i][j].setBackgroundColor(Color.BLUE);
+
+
+                lp.height = 70;
+                lp.width = 70;
                 buttonArray[i][j].setLayoutParams(lp);
-                
-                rl.addView(buttonArray[i][j], lp);
+                if(j>0){
+                    ll2.addView(buttonArray[i][j], lp);
+                }
+                else{
+
+                    ll1.addView(buttonArray[i][j], lp);
+                }
+                //ll2.addView(buttonArray[i][j], lp);
+                //ll1.addView(buttonArray[i][j], lp);
                 System.out.println(buttonArray[i][j].getId());
                 buttonArray[i][j].setOnClickListener(this);
 
+
             }
         }
+        */
 
 
         back = (Button) findViewById(R.id.button_Back);
