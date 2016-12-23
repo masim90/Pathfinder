@@ -3,6 +3,7 @@ package com.pathfinder.sm.pathfinder;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Pathfinder extends Activity implements View.OnClickListener, View.OnHoverListener{
@@ -29,51 +31,11 @@ public class Pathfinder extends Activity implements View.OnClickListener, View.O
     EditText loginPw;
     Button back;
     Button level1;
-    Button b0_0;
-    Button b0_1;
-    Button b0_2;
-    Button b0_3;
-    Button b0_4;
-    Button b0_5;
-    Button b1_0;
-    Button b1_1;
-    Button b1_2;
-    Button b1_3;
-    Button b1_4;
-    Button b1_5;
-    Button b2_0;
-    Button b2_1;
-    Button b2_2;
-    Button b2_3;
-    Button b2_4;
-    Button b2_5;
-    Button b2_6;
-    Button b3_0;
-    Button b3_1;
-    Button b3_2;
-    Button b3_3;
-    Button b3_4;
-    Button b3_5;
-    Button b4_0;
-    Button b4_1;
-    Button b4_2;
-    Button b4_3;
-    Button b4_4;
-    Button b4_5;
-    Button b5_0;
-    Button b5_1;
-    Button b5_2;
-    Button b5_3;
-    Button b5_4;
-    Button b5_5;
-
-    Button[][] buttonArray = new Button[8][8];
-
-
-
-
+    Button[][] buttonArray = new Button[11][8];
     String loginname = "s";
     String passwort = "m";
+
+    Button[][] pathArray = new Button[11][8];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +46,16 @@ public class Pathfinder extends Activity implements View.OnClickListener, View.O
     @Override
     public void onClick(View view) {
         if(view.getId() < 100){
-            highlightButton();
+            Button button  = (Button)findViewById(view.getId());
+            System.out.println(button);
+            System.out.println(Arrays.asList(pathArray));
+            if(Arrays.asList(pathArray).contains(button.getId())){
+                button.setBackgroundColor(Color.YELLOW);
+            }
+            else{
+                Toast.makeText(this, "Falsches Feld!", Toast.LENGTH_SHORT).show();
+                viewLevel1Path();
+            }
         }
         switch(view.getId()) {
             case R.id.button_Register:
@@ -157,73 +128,130 @@ public class Pathfinder extends Activity implements View.OnClickListener, View.O
     }
 
     public void addButtons(){
+        TableLayout tl = (TableLayout)findViewById(R.id.level1_landing);
 
-        LinearLayout ll = (LinearLayout)findViewById(R.id.level1_landing);
-        TableLayout tl = new TableLayout(this);
+        int bId = 0;
+        int leftMargin=5;
+        int topMargin=5;
+        int rightMargin=5;
+        int bottomMargin=5;
+        TableRow.LayoutParams tableRowParams = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,TableRow.LayoutParams.WRAP_CONTENT);
+        tableRowParams.setMargins(leftMargin, topMargin, rightMargin, bottomMargin);
+        tableRowParams.weight = 1;
+        tableRowParams.height = 80;
+        tableRowParams.width = 80;
 
-        String buttonId;
-        int bId;
-
-        for(int row=0;row<8;row++){
+        for(int row=0;row<11;row++){
             TableRow currentRow = new TableRow(this);
+            currentRow.setLayoutParams(tableRowParams);
+
             for(int column=0;column<8;column++){
-                buttonArray[row][column] = new Button(this);
-                buttonId = row + "" + column;
-                bId = Integer.parseInt(buttonId);
-                buttonArray[row][column].setId(bId);
-                buttonArray[row][column].setBackgroundColor(Color.BLUE);
-                currentRow.addView(buttonArray[row][column]);
+
+
+                Button currentButton = new Button(this);
+                currentButton.setLayoutParams(tableRowParams);
+                currentButton.setId(bId);
+                currentButton.setBackgroundColor(Color.BLUE);
+                //currentButton.setOnClickListener(this);
+                buttonArray[row][column] = currentButton;
+                currentRow.addView(currentButton);
+                bId++;
             }
-            tl.addView(currentRow);
+            tl.addView(currentRow, new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT,TableLayout.LayoutParams.WRAP_CONTENT));
         }
-        ll.addView(tl);
-
-        /*for(int i=0;i<8;i++){
-            for(int j=0;j<8;j++){
-                buttonArray[i][j] = new Button(this);
-                buttonId = i + "" + j;
-                bId = Integer.parseInt(buttonId);
-                buttonArray[i][j].setId(bId);
-                buttonArray[i][j].setBackgroundColor(Color.BLUE);
-
-
-                lp.height = 70;
-                lp.width = 70;
-                buttonArray[i][j].setLayoutParams(lp);
-                if(j>0){
-                    ll2.addView(buttonArray[i][j], lp);
-                }
-                else{
-
-                    ll1.addView(buttonArray[i][j], lp);
-                }
-                //ll2.addView(buttonArray[i][j], lp);
-                //ll1.addView(buttonArray[i][j], lp);
-                System.out.println(buttonArray[i][j].getId());
-                buttonArray[i][j].setOnClickListener(this);
-
-
-            }
-        }
-        */
-
-
-        back = (Button) findViewById(R.id.button_Back);
-        back.setOnClickListener(this);
     }
 
     public void viewLevel1Path(){
         setContentView(R.layout.level1_landing);
+        addButtons();
+        final Handler myHandler = new Handler();
+
+        for(int i=0;i<12;i++){
+            final int indexA = i;
+                myHandler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        switch(indexA){
+                            case 0:
+                                buttonArray[0][3].setBackgroundColor(Color.GREEN);
+                                pathArray[0][1] = buttonArray[0][3];
+                                pathArray[0][1].setId(buttonArray[0][3].getId());
+                                break;
+                            case 1:
+                                buttonArray[1][3].setBackgroundColor(Color.GREEN);
+                                pathArray[0][2] = buttonArray[1][3];
+                                pathArray[0][2].setId(buttonArray[1][3].getId());
+                                break;
+                            case 2:
+                                buttonArray[1][2].setBackgroundColor(Color.GREEN);
+                                pathArray[0][3] = buttonArray[1][2];
+                                pathArray[0][3].setId(buttonArray[1][2].getId());
+                                break;
+                            case 3:
+                                buttonArray[1][1].setBackgroundColor(Color.GREEN);
+                                pathArray[0][4] = buttonArray[1][1];
+                                pathArray[0][4].setId(buttonArray[1][1].getId());
+                                break;
+                            case 4:
+                                buttonArray[2][1].setBackgroundColor(Color.GREEN);
+                                pathArray[0][5] = buttonArray[2][1];
+                                pathArray[0][5].setId(buttonArray[2][1].getId());
+                                break;
+                            case 5:
+                                buttonArray[3][1].setBackgroundColor(Color.GREEN);
+                                pathArray[0][6] = buttonArray[3][1];
+                                pathArray[0][6].setId(buttonArray[3][1].getId());
+                                break;
+                            case 6:
+                                buttonArray[3][2].setBackgroundColor(Color.GREEN);
+                                pathArray[0][7] = buttonArray[3][2];
+                                pathArray[0][7].setId(buttonArray[3][2].getId());
+                                break;
+                            case 7:
+                                buttonArray[3][3].setBackgroundColor(Color.GREEN);
+                                pathArray[1][0] = buttonArray[3][3];
+                                pathArray[1][0].setId(buttonArray[3][3].getId());
+                                break;
+                            case 8:
+                                buttonArray[3][4].setBackgroundColor(Color.GREEN);
+                                pathArray[1][1] = buttonArray[3][4];
+                                pathArray[1][1].setId(buttonArray[3][4].getId());
+                                break;
+                            case 9:
+                                buttonArray[4][4].setBackgroundColor(Color.GREEN);
+                                pathArray[1][2] = buttonArray[4][4];
+                                pathArray[1][2].setId(buttonArray[4][4].getId());
+                                break;
+                            case 10:
+                                buttonArray[5][4].setBackgroundColor(Color.GREEN);
+                                pathArray[1][3] = buttonArray[5][4];
+                                pathArray[1][3].setId(buttonArray[5][4].getId());
+
+                                break;
+                            case 11:
+                                for(int k=0;k<11;k++){
+                                    for(int l=0;l<8;l++){
+                                        buttonArray[k][l].setBackgroundColor(Color.BLUE);
+                                    }
+                                }
+                                break;
+                        }
+                    }
+                }, 1000+i*1000);
+
+
+        }
+        for(int i=0;i<11;i++){
+            for(int j=0;j<8;j++){
+                buttonArray[i][j].setOnClickListener(this);
+            }
+        }
+
 
         back = (Button) findViewById(R.id.button_Back);
         back.setOnClickListener(this);
 
-        addButtons();
-    }
-
-    public void highlightButton(){
 
     }
-
 
 }
