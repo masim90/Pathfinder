@@ -2,6 +2,7 @@ package com.pathfinder.sm.pathfinder;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
@@ -19,6 +20,7 @@ import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class Pathfinder extends Activity implements View.OnClickListener, View.OnHoverListener{
 
@@ -47,6 +49,7 @@ public class Pathfinder extends Activity implements View.OnClickListener, View.O
     public void onClick(View view) {
         if(view.getId() < 100){
             Button button  = (Button)findViewById(view.getId());
+            button.setBackgroundColor(Color.YELLOW);/*
             System.out.println(button);
             System.out.println(Arrays.asList(pathArray));
             if(Arrays.asList(pathArray).contains(button.getId())){
@@ -55,7 +58,8 @@ public class Pathfinder extends Activity implements View.OnClickListener, View.O
             else{
                 Toast.makeText(this, "Falsches Feld!", Toast.LENGTH_SHORT).show();
                 viewLevel1Path();
-            }
+            }*/
+            allowedPath();
         }
         switch(view.getId()) {
             case R.id.button_Register:
@@ -174,6 +178,8 @@ public class Pathfinder extends Activity implements View.OnClickListener, View.O
                         switch(indexA){
                             case 0:
                                 buttonArray[0][3].setBackgroundColor(Color.GREEN);
+                                System.out.println(buttonArray[0][3].getX());
+                                System.out.println(buttonArray[0][3].getY() + "\n");
                                 pathArray[0][1] = buttonArray[0][3];
                                 pathArray[0][1].setId(buttonArray[0][3].getId());
                                 break;
@@ -238,7 +244,7 @@ public class Pathfinder extends Activity implements View.OnClickListener, View.O
                         }
                     }
                 }, 1000+i*1000);
-
+            allowedPath();
 
         }
         for(int i=0;i<11;i++){
@@ -253,5 +259,43 @@ public class Pathfinder extends Activity implements View.OnClickListener, View.O
 
 
     }
+
+    public void allowedPath(){
+        for (int i = 0; i < buttonArray.length; i++) {
+            for (int j = 0; j < buttonArray[i].length; j++) {
+                for (int x = Math.max(0, i - 1); x <= Math.min(i + 1, buttonArray.length); x++) {
+                    for (int y = Math.max(0, j - 1); y <= Math.min(j + 1,
+                            buttonArray[i].length); y++) {
+                        if (x >= 0 && y >= 0 && x < buttonArray.length
+                                && y < buttonArray[i].length) {
+                            if(x!=i || y!=j){
+                                if(((ColorDrawable)buttonArray[x][y].getBackground()).getColor() != Color.YELLOW){
+                                    buttonArray[x][y].setOnClickListener(this);
+                                }
+                                else{
+                                    continue;
+                                }
+                            }
+                        }
+                    }
+                }
+                System.out.println("\n");
+            }
+        }
+    }
+
+    /*public void showPath(){
+        int x = 3;
+        int y = 0;
+        buttonArray[x][y].setBackgroundColor(Color.GREEN);
+        for(int i=0;i<8;i++){
+            Random richtung = new Random();
+            richtung.nextInt(4)+1;
+            switch (richtung){
+                case 1:
+                    if(isset(buttonArray[x+1][y]) && buttonArray[x+1][y].getBackground() != Color.GREEN)
+            }
+        }
+    }*/
 
 }
