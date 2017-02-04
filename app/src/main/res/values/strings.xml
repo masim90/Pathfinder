@@ -27,4 +27,10 @@
     <string name="largeText_Level1Title">Level 1</string>
     <string name="button_Start">Start</string>
     <string name="button_Level1Path" />
+    <string name="largeText_Level2Title">Level 2</string>
+    <string name="largeText_Level6Title">Level 6</string>
+    <string name="largeText_Level7Title">Level7</string>
+    <string name="largeText_Level3Title">Level 3</string>
+    <string name="largeText_Level4Title">Level 4</string>
+    <string name="largeText_Level5Title">Level 5</string>
 </resources>

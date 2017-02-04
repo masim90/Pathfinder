@@ -33,6 +33,67 @@
         android:id="@+id/button_Level1"
         android:layout_marginTop="44dp"
         android:layout_below="@+id/largeText_LevelTitle"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:onClick="onClickChooseLevel" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_Level2"
+        android:id="@+id/button_Level2"
+        android:layout_alignTop="@+id/button_Level1"
+        android:layout_toEndOf="@+id/button_Level1"
+        android:onClick="onClickChooseLevel" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_Level3"
+        android:id="@+id/button_Level3"
+        android:layout_alignTop="@+id/button_Level2"
+        android:layout_toEndOf="@+id/button_Level2"
+        android:onClick="onClickChooseLevel" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_Level4"
+        android:id="@+id/button_Level4"
+        android:layout_alignTop="@+id/button_Level3"
+        android:layout_toEndOf="@+id/button_Level3"
+        android:onClick="onClickChooseLevel" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_Level5"
+        android:id="@+id/button_Level5"
+        android:layout_alignTop="@+id/button_Level4"
+        android:layout_toEndOf="@+id/button_Level4"
+        android:onClick="onClickChooseLevel" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_Level6"
+        android:id="@+id/button_Level6"
+        android:layout_alignTop="@+id/button_Level5"
+        android:layout_toEndOf="@+id/button_Level5"
+        android:onClick="onClickChooseLevel" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_Level7"
+        android:id="@+id/button_Level7"
+        android:layout_alignTop="@+id/button_Level6"
+        android:layout_toEndOf="@+id/button_Level6"
+        android:onClick="onClickChooseLevel" />
 
 </RelativeLayout>

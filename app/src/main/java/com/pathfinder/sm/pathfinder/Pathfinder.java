@@ -37,11 +37,78 @@ public class Pathfinder extends Activity implements View.OnClickListener, View.O
     String loginname = "s";
     String passwort = "m";
     List<Button> pathArray = new ArrayList<Button>();
+    int levelDifficulty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         viewLogin();
+    }
+
+    public void onClickChooseLevel(View view){
+        switch (view.getId()){
+            case R.id.button_Level1:
+                levelDifficulty = 7;
+                viewLevel(levelDifficulty);
+                break;
+            case R.id.button_Level2:
+                levelDifficulty = 8;
+                viewLevel(levelDifficulty);
+                break;
+            case R.id.button_Level3:
+                levelDifficulty = 9;
+                viewLevel(levelDifficulty);
+                break;
+            case R.id.button_Level4:
+                levelDifficulty = 10;
+                viewLevel(levelDifficulty);
+                break;
+            case R.id.button_Level5:
+                levelDifficulty = 11;
+                viewLevel(levelDifficulty);
+                break;
+            case R.id.button_Level6:
+                levelDifficulty = 12;
+                viewLevel(levelDifficulty);
+                break;
+            case R.id.button_Level7:
+                levelDifficulty = 13;
+                viewLevel(levelDifficulty);
+                break;
+        }
+    }
+
+    public void onClickStartLevel(View view){
+        switch (view.getId()){
+            case R.id.button_Start1:
+                levelDifficulty = 7;
+                viewLevelPath(levelDifficulty);
+                break;
+            case R.id.button_Start2:
+                levelDifficulty = 8;
+                viewLevelPath(levelDifficulty);
+                break;
+            case R.id.button_Start3:
+                levelDifficulty = 9;
+                viewLevelPath(levelDifficulty);
+                break;
+            case R.id.button_Start4:
+                levelDifficulty = 10;
+                viewLevelPath(levelDifficulty);
+                break;
+            case R.id.button_Start5:
+                levelDifficulty = 11;
+                viewLevelPath(levelDifficulty);
+                break;
+            case R.id.button_Start6:
+                levelDifficulty = 12;
+                viewLevelPath(levelDifficulty);
+                break;
+            case R.id.button_Start7:
+                levelDifficulty = 13;
+                viewLevelPath(levelDifficulty);
+                break;
+        }
     }
 
     @Override
@@ -62,7 +129,8 @@ public class Pathfinder extends Activity implements View.OnClickListener, View.O
                 }
                 else{
                     Toast.makeText(this, "Falsches Feld! Neustart", Toast.LENGTH_SHORT).show();
-                    viewLevelPath();
+                    pathArray.clear();
+                    viewLevelPath(levelDifficulty);
                 }
             }
             else{
@@ -93,12 +161,12 @@ public class Pathfinder extends Activity implements View.OnClickListener, View.O
                     Toast.makeText(this, "Falsche Benutzerdaten", Toast.LENGTH_SHORT).show();
                 }
                 break;
-            case R.id.button_Level1:
+            /*case R.id.button_Level1:
                 viewLevel1();
-                break;
-            case R.id.button_Start:
-                viewLevelPath();
-                break;
+                break;*/
+            //case R.id.button_Start:
+                //viewLevelPath();
+               // break;
             case R.id.button_Back:
                 viewChooseLevel();
                 break;
@@ -116,8 +184,8 @@ public class Pathfinder extends Activity implements View.OnClickListener, View.O
         setContentView(R.layout.level_landing);
         back = (Button) findViewById(R.id.button_Back);
         back.setOnClickListener(this);
-        level1 = (Button) findViewById(R.id.button_Level1);
-        level1.setOnClickListener(this);
+        //level1 = (Button) findViewById(R.id.button_Level1);
+        //level1.setOnClickListener(this);
     }
 
     public void viewLogin(){
@@ -139,10 +207,32 @@ public class Pathfinder extends Activity implements View.OnClickListener, View.O
         back.setOnClickListener(this);
     }
 
-    public void viewLevel1(){
-        setContentView(R.layout.level1_start);
-        start = (Button) findViewById(R.id.button_Start);
-        start.setOnClickListener(this);
+    public void viewLevel(int levelDifficulty){
+        switch (levelDifficulty){
+            case 7:
+                setContentView(R.layout.level1_start);
+                break;
+            case 8:
+                setContentView(R.layout.level2_start);
+                break;
+            case 9:
+                setContentView(R.layout.level3_start);
+                break;
+            case 10:
+                setContentView(R.layout.level4_start);
+                break;
+            case 11:
+                setContentView(R.layout.level5_start);
+                break;
+            case 12:
+                setContentView(R.layout.level6_start);
+                break;
+            case 13:
+                setContentView(R.layout.level7_start);
+                break;
+
+        }
+
 
         back = (Button) findViewById(R.id.button_Back);
         back.setOnClickListener(this);
@@ -184,16 +274,17 @@ public class Pathfinder extends Activity implements View.OnClickListener, View.O
         }
     }
 
-    public void viewLevelPath(){
+    public void viewLevelPath(int levelDifficulty){
         setContentView(R.layout.level1_landing);
         addButtons();
         final Handler myHandler = new Handler();
         XandY customVariable = new XandY(0, 3);
         buttonArray[0][3].setBackgroundColor(Color.GREEN);
         pathArray.add(0,buttonArray[0][3]);
-        for(int i=0;i<7;i++){
+        for(int i=0;i<levelDifficulty;i++){
             myHandler.postDelayed(new delayRunnable(customVariable, i, buttonArray, pathArray),1000+i*1000);
         }
+        
         for(int i=0;i<11;i++){
             for(int j=0;j<8;j++){
                 buttonArray[i][j].setOnClickListener(this);
