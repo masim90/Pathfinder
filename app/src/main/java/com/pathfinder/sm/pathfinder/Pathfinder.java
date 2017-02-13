@@ -39,11 +39,11 @@ public class Pathfinder extends Activity implements View.OnClickListener{
     List<Button> pathArray = new ArrayList<Button>();
     int levelDifficulty;
     SharedPreferences prefs;
-    SharedPreferences.Editor prefsEditor;
     final String KEY1 = "key1";
     final String KEY2 = "key2";
     final String KEY3 = "key3";
     final String KEY4 = "key4";
+    final String SHARED_PREFERENCES_KEY = "prefdata1";
     String username;
     String usermail;
     String userpw1;
@@ -52,8 +52,7 @@ public class Pathfinder extends Activity implements View.OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        prefs = this.getSharedPreferences("prefdata1", MODE_PRIVATE);
-        prefsEditor = prefs.edit();
+        prefs = this.getSharedPreferences(SHARED_PREFERENCES_KEY, MODE_PRIVATE);
         viewLogin();
 
 
@@ -163,11 +162,11 @@ public class Pathfinder extends Activity implements View.OnClickListener{
             usermail = userMail.getText().toString();
             userpw1 = userPW1.getText().toString();
             userpw2 = userPW2.getText().toString();
-            prefsEditor.putString(KEY1, username);
-            prefsEditor.putString(KEY2, usermail);
-            prefsEditor.putString(KEY3, userpw1);
-            prefsEditor.putString(KEY4, userpw2);
-            prefsEditor.commit();
+            prefs.edit().putString(KEY1, username).apply();
+            prefs.edit().putString(KEY2, usermail).apply();
+            prefs.edit().putString(KEY3, userpw1).apply();
+            prefs.edit().putString(KEY4, userpw2).apply();
+            Toast.makeText(this, "Registrierung erfolgreich!", Toast.LENGTH_SHORT).show();
             viewLogin();
         }
     }
@@ -256,6 +255,9 @@ public class Pathfinder extends Activity implements View.OnClickListener{
                     viewRegister();
                     break;
 
+                /*
+                 * Methode aufrufen um Benutzer-Daten zu speichern
+                 */
                 case R.id.button_RegisterSave:
                     registerUser();
                     break;
