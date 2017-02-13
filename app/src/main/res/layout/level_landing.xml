@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_Back"
-        android:id="@+id/button_Back"
+        android:id="@+id/button_BackToLogin"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true" />
 
@@ -34,7 +34,8 @@
         android:layout_marginTop="44dp"
         android:layout_below="@+id/largeText_LevelTitle"
         android:layout_alignParentStart="true"
-        android:onClick="onClickChooseLevel" />
+        android:onClick="onClickChooseLevel"
+        android:enabled="false" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -95,5 +96,13 @@
         android:layout_alignTop="@+id/button_Level6"
         android:layout_toEndOf="@+id/button_Level6"
         android:onClick="onClickChooseLevel" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_Guide"
+        android:id="@+id/button_Guide"
+        android:layout_alignBottom="@+id/button_BackToLogin"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

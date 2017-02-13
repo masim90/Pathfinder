@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_Back"
-        android:id="@+id/button_Back"
+        android:id="@+id/button_BackToLogin"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true" />
 
@@ -42,7 +42,7 @@
         android:id="@+id/personName_editName"
         android:layout_below="@+id/mediumText_Name"
         android:layout_alignStart="@+id/mediumText_Name"
-        android:layout_alignEnd="@+id/button_Back" />
+        android:layout_alignEnd="@+id/button_BackToLogin" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:ems="10"
-        android:id="@+id/editText"
+        android:id="@+id/personName_editEmail"
         android:layout_below="@+id/mediumText_Email"
         android:layout_alignEnd="@+id/personName_editName"
         android:layout_alignStart="@+id/mediumText_Email" />
@@ -69,18 +69,18 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/mediumText_PW"
         android:id="@+id/mediumText_PW"
-        android:layout_below="@+id/editText"
-        android:layout_alignStart="@+id/editText" />
+        android:layout_below="@+id/personName_editEmail"
+        android:layout_alignStart="@+id/personName_editEmail" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/editText2"
+        android:id="@+id/personName_editPW1"
         android:layout_below="@+id/mediumText_PW"
         android:layout_alignStart="@+id/mediumText_PW"
-        android:layout_alignEnd="@+id/editText" />
+        android:layout_alignEnd="@+id/personName_editEmail" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -88,26 +88,27 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/mediumText_RepeatPW"
         android:id="@+id/mediumText_PW2"
-        android:layout_below="@+id/editText2"
-        android:layout_alignStart="@+id/editText2" />
+        android:layout_below="@+id/personName_editPW1"
+        android:layout_alignStart="@+id/personName_editPW1" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/editText3"
+        android:id="@+id/personName_editPW2"
         android:layout_below="@+id/mediumText_PW2"
         android:layout_alignStart="@+id/mediumText_PW2"
-        android:layout_alignEnd="@+id/editText2" />
+        android:layout_alignEnd="@+id/personName_editPW1" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_Register"
         android:id="@+id/button_register"
-        android:layout_below="@+id/editText3"
+        android:layout_below="@+id/personName_editPW2"
         android:layout_alignStart="@+id/largeText_RegisterTitle"
-        android:layout_marginTop="29dp" />
+        android:layout_marginTop="29dp"
+        android:onClick="onClickRegister" />
 
 </RelativeLayout>

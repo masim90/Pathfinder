@@ -33,4 +33,5 @@
     <string name="largeText_Level3Title">Level 3</string>
     <string name="largeText_Level4Title">Level 4</string>
     <string name="largeText_Level5Title">Level 5</string>
+    <string name="button_Guide">Anleitung</string>
 </resources>
