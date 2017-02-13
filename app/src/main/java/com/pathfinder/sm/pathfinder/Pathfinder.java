@@ -3,16 +3,11 @@ package com.pathfinder.sm.pathfinder;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,14 +36,10 @@ public class Pathfinder extends Activity implements View.OnClickListener{
     Button backToLogin;
     Button guide;
     Button[][] buttonArray = new Button[11][8];
-    String loginname = "s";
-    String passwort = "m";
     List<Button> pathArray = new ArrayList<Button>();
     int levelDifficulty;
     SharedPreferences prefs;
     SharedPreferences.Editor prefsEditor;
-    //DBManager dbmgr;
-    //SQLiteDatabase sqldb;
     final String KEY1 = "key1";
     final String KEY2 = "key2";
     final String KEY3 = "key3";
@@ -61,30 +52,12 @@ public class Pathfinder extends Activity implements View.OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //dbmgr = new DBManager(this);
         prefs = this.getSharedPreferences("prefdata1", MODE_PRIVATE);
         prefsEditor = prefs.edit();
         viewLogin();
 
 
     }
-
-
-    /*
-    protected void onPause(){
-        super.onPause();
-        dbmgr.close();
-        Toast.makeText(this, "Closed database", Toast.LENGTH_SHORT).show();
-    }
-
-    protected void onResume(){
-        super.onResume();
-        sqldb = dbmgr.getReadableDatabase();
-        Cursor tableCursor = sqldb.rawQuery(DBManager.classSelectRaw, null);
-        Toast.makeText(this, "Opened database", Toast.LENGTH_SHORT).show();
-    }
-    */
-
 
     /*
      * OnClick Event für die Level-Buttons und setzen der Schwierigkeit für das Aktivieren der
@@ -159,7 +132,10 @@ public class Pathfinder extends Activity implements View.OnClickListener{
         }
     }
 
-    public void onClickRegister(){
+    /*
+     * Prüfen ob alle Felder gefüllt sind und speichern in XML Datei
+     */
+    public void registerUser(){
 
         if(userName.getText().length() == 0)
         {
@@ -281,23 +257,20 @@ public class Pathfinder extends Activity implements View.OnClickListener{
                     break;
 
                 case R.id.button_RegisterSave:
-                    onClickRegister();
+                    registerUser();
                     break;
 
                 /*
                  * Prüfen ob eingegebene Login-Daten korrekt
                  */
                 case R.id.button_Login:
-                    if(loginName.getText().toString().equals(prefs.getString(KEY1,"Falscher Benutzername")) && loginPw.getText().toString().equals(prefs.getString(KEY3, "Falsches Passwort")))
+                    if(loginName.getText().toString().equals(prefs.getString(KEY1,"Falscher Benutzername"))
+                            && loginPw.getText().toString().equals(prefs.getString(KEY3, "Falsches Passwort")))
                     {
                         Toast.makeText(this, "Sie haben sich erfolgreich eingeloggt", Toast.LENGTH_SHORT).show();
                         viewChooseLevel(levelDifficulty);
                     }
-                    /*if (loginName.getText().toString().equals(loginname) && loginPw.getText().toString().equals(passwort))
-                    {
-                        Toast.makeText(this, "Sie haben sich erfolgreich eingeloggt", Toast.LENGTH_SHORT).show();
-                        viewChooseLevel(levelDifficulty);
-                    }*/ else
+                    else
                     {
                         Toast.makeText(this, "Falsche Benutzerdaten", Toast.LENGTH_SHORT).show();
                     }
@@ -426,9 +399,6 @@ public class Pathfinder extends Activity implements View.OnClickListener{
         register.setOnClickListener(this);
         login.setOnClickListener(this);
         close.setOnClickListener(this);
-
-        //String userData = dbmgr.output();
-        //Toast.makeText(this, userData, Toast.LENGTH_SHORT).show();
     }
 
     /*
@@ -445,8 +415,6 @@ public class Pathfinder extends Activity implements View.OnClickListener{
         registerSave = (Button) findViewById(R.id.button_RegisterSave);
         backToLogin.setOnClickListener(this);
         registerSave.setOnClickListener(this);
-
-        //long rowID = dbmgr.insertRecord();
     }
 
     /*
