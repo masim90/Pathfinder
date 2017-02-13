@@ -27,6 +27,7 @@ import java.util.List;
 public class Pathfinder extends Activity implements View.OnClickListener{
 
     Button register;
+    Button registerSave;
     Button login;
     Button close;
     TextView title;
@@ -52,6 +53,10 @@ public class Pathfinder extends Activity implements View.OnClickListener{
     final String KEY2 = "key2";
     final String KEY3 = "key3";
     final String KEY4 = "key4";
+    String username;
+    String usermail;
+    String userpw1;
+    String userpw2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,8 +161,6 @@ public class Pathfinder extends Activity implements View.OnClickListener{
 
     public void onClickRegister(){
 
-
-
         if(userName.getText().length() == 0)
         {
             Toast.makeText(this, "Bitte Benutzername eingeben!", Toast.LENGTH_SHORT).show();
@@ -174,16 +177,16 @@ public class Pathfinder extends Activity implements View.OnClickListener{
         {
             Toast.makeText(this, "Bitte Passwort wiederholen!", Toast.LENGTH_SHORT).show();
         }
-        else if(!userPW2.getText().equals(userPW1.getText()))
+        else if(!userPW2.getText().toString().equals(userPW1.getText().toString()))
         {
             Toast.makeText(this, "Passwörter müssen übereinstimmen!", Toast.LENGTH_SHORT).show();
         }
         else
         {
-            String username = userName.getText().toString();
-            String usermail = userMail.getText().toString();
-            String userpw1 = userPW1.getText().toString();
-            String userpw2 = userPW2.getText().toString();
+            username = userName.getText().toString();
+            usermail = userMail.getText().toString();
+            userpw1 = userPW1.getText().toString();
+            userpw2 = userPW2.getText().toString();
             prefsEditor.putString(KEY1, username);
             prefsEditor.putString(KEY2, usermail);
             prefsEditor.putString(KEY3, userpw1);
@@ -275,6 +278,10 @@ public class Pathfinder extends Activity implements View.OnClickListener{
             {
                 case R.id.button_Register:
                     viewRegister();
+                    break;
+
+                case R.id.button_RegisterSave:
+                    onClickRegister();
                     break;
 
                 /*
@@ -435,7 +442,9 @@ public class Pathfinder extends Activity implements View.OnClickListener{
         userPW1 = (EditText) findViewById(R.id.personName_editPW1);
         userPW2 = (EditText) findViewById(R.id.personName_editPW2);
         backToLogin = (Button) findViewById(R.id.button_BackToLogin);
+        registerSave = (Button) findViewById(R.id.button_RegisterSave);
         backToLogin.setOnClickListener(this);
+        registerSave.setOnClickListener(this);
 
         //long rowID = dbmgr.insertRecord();
     }
